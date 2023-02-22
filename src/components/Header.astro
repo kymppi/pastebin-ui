@@ -1,13 +1,21 @@
 <header class="max-w-fit flex flex-col gap-4">
-  <h1 class="text-3xl sm:text-4xl md:text-6xl text-center font-black">
+  <h1
+    class="text-3xl sm:text-4xl md:text-6xl text-center font-black text-white"
+  >
     Liiteroskis - Pastebin.Fi
   </h1>
   <nav class="">
-    <ul class="flex justify-between items-center gap-2">
-      <li class="text-sm sm:text-base">Uusi paste</li>
-      <li class="text-sm sm:text-base">Selaa liitteitä</li>
-      <li class="text-sm sm:text-base">Tietoa meistä</li>
-      <li class="text-sm sm:text-base">Lähdekoodi</li>
+    <ul class="grid grid-cols-4 justify-between items-center">
+      <li class="flex items-center"><a href="/">Luo uusi liite</a></li>
+      <li class="flex items-center">
+        <a href="/browse">Selaa liitteitä</a>
+      </li>
+      <li class="flex items-center justify-end">
+        <a href="/about">Tietoa meistä</a>
+      </li>
+      <li class="items-center justify-end hidden sm:flex">
+        <a href="/source">Lähdekoodi</a>
+      </li>
     </ul>
   </nav>
 </header>

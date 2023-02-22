@@ -1,4 +1,5 @@
 ---
+import GlobalStyles from '../components/GlobalStyles.astro';
 import Header from '../components/Header.astro';
 
 export interface Props {
@@ -20,5 +21,6 @@ const { title = 'Liiteroskis - Pastebin.Fi' } = Astro.props;
     <main class="flex justify-center w-full p-10 sm:p-20">
       <Header />
     </main>
+    <GlobalStyles />
   </body>
 </html>
