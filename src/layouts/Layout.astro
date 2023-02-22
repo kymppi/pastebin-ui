@@ -18,8 +18,11 @@ const { title = 'Liiteroskis - Pastebin.Fi' } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <main class="flex justify-center w-full p-10 sm:p-20">
+    <main class="grid w-full p-10 gap-10 sm:p-20">
       <Header />
+      <div class="h-full">
+        <slot />
+      </div>
     </main>
     <GlobalStyles />
   </body>

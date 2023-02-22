@@ -1,0 +1,30 @@
+---
+import FloatingInput from './forms/FloatingInput.astro';
+import FloatingTextArea from './forms/FloatingTextArea.astro';
+import Select from './forms/Select.astro';
+import SubmitButton from './forms/SubmitButton.astro';
+import Switch from './forms/Switch.astro';
+---
+
+<form
+  action="/new"
+  method="post"
+  class="flex flex-col gap-4 my-4"
+  name="new_paste"
+>
+  <FloatingInput name="name" label="Liitteen nimi" />
+  <FloatingTextArea name="content" label="Sisältö" />
+  <div class="grid grid-cols-3 gap-8 items-center">
+    <Select
+      name="language"
+      label="Kieli"
+      options={[
+        { value: 'not_selected', label: 'Valitse kieli' },
+        { value: 'markdown', label: 'Markdown' },
+        { value: 'html', label: 'HTML' },
+      ]}
+    />
+    <Switch name="private" label="Yksityinen" />
+    <SubmitButton label="Luo" />
+  </div>
+</form>

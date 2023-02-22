@@ -1,0 +1,31 @@
+---
+export interface Props {
+  label: string;
+  options: { value: string; label: string }[];
+  name: string;
+}
+
+const { label, options, name } = Astro.props;
+---
+
+<div>
+  <label for="select" class="sr-only">{label}</label>
+  <select
+    id="select"
+    name={name}
+    class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+  >
+    <!-- <option selected>Choose a country</option>
+  <option value="US">United States</option>
+  <option value="CA">Canada</option>
+  <option value="FR">France</option>
+  <option value="DE">Germany</option> -->
+    {
+      options.map((el, index) => (
+        <option value={el.value} selected={options.length === index}>
+          {el.label}
+        </option>
+      ))
+    }
+  </select>
+</div>
