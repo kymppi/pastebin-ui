@@ -1,0 +1,25 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Props extends HTMLAttributes<'input'> {
+  label: string;
+  name: string;
+}
+
+const { label, name, checked = false, class: className, ...rest } = Astro.props;
+---
+
+<div class:list={['flex flex-col', className]}>
+  <div class="form-control">
+    <label class="label cursor-pointer flex gap-4">
+      <span class="label-text">{label}</span>
+      <input
+        type="checkbox"
+        class="checkbox checkbox-secondary"
+        name={name}
+        checked={checked}
+        {...rest}
+      />
+    </label>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Props extends HTMLAttributes<'input'> {
+  label: string;
+  name: string;
+}
+
+const { label, name, placeholder, class: className, ...rest } = Astro.props;
+---
+
+<div class:list={['form-control w-full', className]}>
+  <label class="label">
+    <span class="label-text">{label}</span>
+  </label>
+  <input
+    type="text"
+    placeholder={placeholder}
+    name={name}
+    class="input input-bordered input-secondary w-full"
+    {...rest}
+  />
+</div>
