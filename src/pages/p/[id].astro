@@ -1,7 +1,85 @@
 ---
+import { Code } from 'astro/components';
+import InfoTooltip from '../../components/InfoTooltip.astro';
+import { getPaste } from '../../data/paste.api';
 import Layout from '../../layouts/Layout.astro';
+import { convertBytesToHuman } from '../../utils/convertFileSize';
 
 const { id } = Astro.params;
+
+if (!id)
+  return new Response(null, {
+    status: 400,
+    statusText: 'Bad Request, no id provided',
+  });
+
+const paste = await getPaste(id);
+
+if (paste.status !== 200)
+  return new Response(null, {
+    status: 404,
+    statusText: 'Paste not found',
+  });
 ---
 
-<Layout>paste id: {id}</Layout>
+<Layout>
+  <div class="grid grid-cols-8 text-white">
+    <div class="col-span-3 flex items-center">
+      <h1 class="text-center font-bold text-xl">{paste.data.title}</h1>
+    </div>
+    <div
+      class="text-sm col-span-3 flex p-2 px-4 rounded-lg bg-[#0d1117] justify-between items-center"
+    >
+      <InfoTooltip
+        icon="ic:baseline-remove-red-eye"
+        text={paste.data.meta.views}
+        tooltip="Näyttökerrat"
+      />
+      <div class="divider divider-horizontal"></div>
+      <InfoTooltip
+        icon="ic:baseline-file-copy"
+        text={convertBytesToHuman(paste.data.meta.size)}
+        tooltip="Tiedostokoko"
+      />
+      <div class="divider divider-horizontal"></div>
+      <div class="text-xs">
+        <InfoTooltip
+          icon="mdi:calendar-month"
+          text={paste.data.date.toUTCString()}
+          tooltip="Luomispäivä"
+        />
+      </div>
+      <div class="divider divider-horizontal"></div>
+      <InfoTooltip
+        icon="mdi:language"
+        text={paste.data.language}
+        tooltip="Tiedoston kieli"
+      />
+      <div class="divider divider-horizontal"></div>
+      <InfoTooltip
+        icon="ic:baseline-lock"
+        text={paste.data.private ? 'Yksityinen' : 'Julkinen'}
+        tooltip="Näkyvyys"
+      />
+    </div>
+
+    <div>
+      <!-- Author -->
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="grid grid-cols-8">
+    <div class="col-span-6 p-8 bg-[#0d1117] rounded-lg">
+      <Code
+        lang={paste.data.language as any}
+        code={paste.data.content}
+        theme="github-dark"
+      />
+    </div>
+  </div>
+</Layout>
+<!-- Views -->
+<!-- Size -->
+<!-- Date -->
+<!-- Language -->
+<!-- Private? -->

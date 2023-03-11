@@ -1,25 +1,20 @@
 ---
-export interface Props {
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Props extends HTMLAttributes<'select'> {
   label: string;
   options: { value: string; label: string }[];
   name: string;
 }
 
-const { label, options, name } = Astro.props;
+const { label, options, name, class: className, ...rest } = Astro.props;
 ---
 
-<div>
-  <label for="select" class="sr-only">{label}</label>
-  <select
-    id="select"
-    name={name}
-    class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
-  >
-    <!-- <option selected>Choose a country</option>
-  <option value="US">United States</option>
-  <option value="CA">Canada</option>
-  <option value="FR">France</option>
-  <option value="DE">Germany</option> -->
+<div class:list={['form-control w-full max-w-xs', className]}>
+  <label class="label">
+    <span class="label-text">{label}</span>
+  </label>
+  <select class="select select-bordered select-secondary" name={name} {...rest}>
     {
       options.map((el, index) => (
         <option value={el.value} selected={options.length === index}>

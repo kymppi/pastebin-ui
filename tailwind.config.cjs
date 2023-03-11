@@ -1,16 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-  theme: {
-    extend: {
-      colors: {
-        primary: '#8ecae6',
-        secondary: '#219ebc',
-        accent: '#ffb703',
-        'accent-2': '#fb8500',
-        background: '#023047',
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: '#8ECAE6',
+          secondary: '#219EBC',
+          accent: '#FFB703',
+          neutral: '#023047',
+          'base-100': '#0d1117',
+          info: '#3ABFF8',
+          success: '#36D399',
+          warning: '#FB8500',
+          error: '#F87272',
+        },
       },
-    },
+    ],
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('daisyui')],
 };

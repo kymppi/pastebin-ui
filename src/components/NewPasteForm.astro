@@ -1,30 +1,72 @@
 ---
-import FloatingInput from './forms/FloatingInput.astro';
-import FloatingTextArea from './forms/FloatingTextArea.astro';
+import Checkbox from './forms/Checkbox.astro';
 import Select from './forms/Select.astro';
 import SubmitButton from './forms/SubmitButton.astro';
-import Switch from './forms/Switch.astro';
+import TextInput from './forms/TextInput.astro';
+import TextareaInput from './forms/TextareaInput.astro';
 ---
 
 <form
   action="/new"
   method="post"
-  class="flex flex-col gap-4 my-4"
+  class="gap-4 my-4 grid-cols-3"
   name="new_paste"
 >
-  <FloatingInput name="name" label="Liitteen nimi" />
-  <FloatingTextArea name="content" label="Sisältö" />
-  <div class="grid grid-cols-3 gap-8 items-center">
-    <Select
-      name="language"
-      label="Kieli"
-      options={[
-        { value: 'plaintext', label: 'Teksti' },
-        { value: 'markdown', label: 'Markdown' },
-        { value: 'html', label: 'HTML' },
-      ]}
-    />
-    <Switch name="private" label="Yksityinen" />
-    <SubmitButton label="Luo" />
-  </div>
+  <TextInput
+    name="title"
+    label="Liitteen nimi"
+    class="title"
+    min={3}
+    maxlength={60}
+    required
+  />
+  <Select
+    name="language"
+    label="Kieli"
+    options={[
+      { value: 'plaintext', label: 'Teksti' },
+      { value: 'markdown', label: 'Markdown' },
+      { value: 'html', label: 'HTML' },
+    ]}
+    class="language"
+    required
+  />
+  <Checkbox
+    name="private"
+    label="Yksityinen"
+    class="private mx-8 mt-8 justify-center"
+  />
+  <TextareaInput name="content" label="Sisältö" class="content" required />
+  <SubmitButton label="Luo" class="submit" />
 </form>
+
+<style>
+  form {
+    display: grid;
+    grid-template-areas:
+      'name language private'
+      'content content content'
+      '. submit .';
+  }
+
+  .name {
+    grid-area: name;
+  }
+
+  .language {
+    grid-area: language;
+  }
+
+  .private {
+    grid-area: private;
+  }
+
+  .content {
+    grid-area: content;
+    @apply h-72;
+  }
+
+  .submit {
+    grid-area: submit;
+  }
+</style>

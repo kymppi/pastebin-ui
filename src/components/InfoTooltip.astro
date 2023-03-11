@@ -1,0 +1,16 @@
+---
+import { Icon } from 'astro-icon';
+
+export interface Props {
+  icon: string;
+  text: any;
+  tooltip: string;
+}
+
+const { icon, text, tooltip } = Astro.props;
+---
+
+<div class="flex items-center gap-4 tooltip tooltip-info" data-tip={tooltip}>
+  <Icon name={icon} class="h-6" />
+  <span>{text}</span>
+</div>
