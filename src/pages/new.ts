@@ -1,9 +1,9 @@
 import type { APIRoute } from 'astro';
 import z from 'zod';
-import { API_URL } from '../config';
+import { createPaste } from '../data/paste.api';
 
 const newPasteSchema = z.object({
-  name: z.string(),
+  title: z.string(),
   content: z.string(),
   language: z.string(),
   private: z
@@ -16,42 +16,25 @@ export const post: APIRoute = async ({ request, redirect }) => {
   const formData = await request.formData();
   const payload = Object.fromEntries(formData.entries());
 
-  try {
-    const newPaste = newPasteSchema.parse(payload);
+  const newPaste = newPasteSchema.safeParse(payload);
 
-    //TODO: send POST request to API
-    //TODO: https://github.com/pastebin-fi/PowerPaste/blob/master/APISPEC.md#post--create-a-new-paste
-    try {
-      const paste = {
-        title: newPaste.name,
-        language: newPaste.language,
-        paste: newPaste.content,
-        private: newPaste.private,
+  if (!newPaste.success) return { body: JSON.stringify(newPaste.error) };
+
+  return await createPaste(newPaste.data)
+    .then((res) => {
+      //TODO: switch to 201 when fixed in api
+      if (res.status === 200) return redirect(`/p/${res.data.id}`, 301);
+
+      return {
+        body: JSON.stringify({ error: 'Something went wrong', ...res }),
       };
-
-      const res = await fetch(`${API_URL}/pastes`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(paste),
-      });
-
-      const data = await res.json();
-      console.log(data);
-
-      return redirect(`/p/${data.id}`, 301);
-    } catch (error) {
-      console.error(error);
-    }
-
-    return {
-      body: JSON.stringify({ data: newPaste }),
-    };
-  } catch (error: any) {
-    return {
-      body: JSON.stringify({ error: error.message }),
-    };
-  }
+    })
+    .catch((error) => {
+      return {
+        body: JSON.stringify({
+          error: error.message,
+          error1: error.toJSON(),
+        }),
+      };
+    });
 };
