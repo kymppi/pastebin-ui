@@ -14,6 +14,6 @@
         }
         }
     </style>
-    <path fill='none' stroke='#023047' stroke-width='2' class='animate-squiggle'
+    <path fill='none' stroke='#8ecae6' stroke-width='2' class='animate-squiggle'
         d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3' />
 </svg>
