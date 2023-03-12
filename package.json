@@ -30,6 +30,7 @@
     "@xstate/cli": "^0.4.2",
     "daisyui": "^2.51.2",
     "prettier": "^2.8.4",
+    "vercel": "^28.16.15",
     "vite-plugin-node-polyfills": "^0.7.0"
   }
 }
