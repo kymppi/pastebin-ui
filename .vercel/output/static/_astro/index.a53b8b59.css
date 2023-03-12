@@ -1,1 +1,0 @@
-form:where(.astro-6LBNWPQ2){display:grid;grid-template-areas:"name language private" "content content content" ". submit ."}.name:where(.astro-6LBNWPQ2){grid-area:name}.language:where(.astro-6LBNWPQ2){grid-area:language}.private:where(.astro-6LBNWPQ2){grid-area:private}.content:where(.astro-6LBNWPQ2){grid-area:content;height:18rem}.submit:where(.astro-6LBNWPQ2){grid-area:submit}
