@@ -1,0 +1,19 @@
+---
+export interface Props {
+  component?: any;
+  [key: string]: any;
+}
+
+const { component: Component = 'div', ...rest } = Astro.props;
+---
+
+<Component
+  class:list={[
+    'border-2 border-solid rounded-lg border-accent p-8 flex flex-col gap-4 text-white focus:-translate-y-8 hover:-translate-y-8 focus:-translate-x-2 hover:-translate-x-2 focus:scale-105 hover:scale-105 transition-transform',
+    rest.class,
+  ]}
+  tabindex="0"
+  {...rest}
+>
+  <slot />
+</Component>
