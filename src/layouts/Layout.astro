@@ -29,3 +29,16 @@ const { title = 'Liiteroskis - Pastebin.Fi' } = Astro.props;
     <GlobalStyles />
   </body>
 </html>
+
+<style is:global>
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0, 01s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0, 01s !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
