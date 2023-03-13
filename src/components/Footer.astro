@@ -1,5 +1,11 @@
-<footer class="footer footer-center p-10 bg-primary text-primary-content">
-  <div>
+---
+import ThemeSelector from './ThemeSelector.astro';
+---
+
+<footer
+  class="footer footer-center p-10 bg-primary text-primary-content grid grid-cols-3"
+>
+  <div class="col-start-2">
     <svg
       width="50"
       height="50"
@@ -21,5 +27,8 @@
         class="text-current secondary-link">Midka</a
       >
     </p>
+  </div>
+  <div class="col-start-3 w-full h-full flex items-end justify-end">
+    <ThemeSelector />
   </div>
 </footer>
