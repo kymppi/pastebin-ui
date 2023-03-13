@@ -1,9 +1,17 @@
 ---
+import { BUNDLED_LANGUAGES } from 'shiki';
 import Checkbox from './forms/Checkbox.astro';
-import Select from './forms/Select.astro';
+import Datalist from './forms/Datalist.astro';
 import SubmitButton from './forms/SubmitButton.astro';
 import TextInput from './forms/TextInput.astro';
 import TextareaInput from './forms/TextareaInput.astro';
+
+const options = [
+  { value: 'plaintext' },
+  ...BUNDLED_LANGUAGES.map((lang) => ({
+    value: lang.id,
+  })),
+];
 ---
 
 <form
@@ -20,14 +28,10 @@ import TextareaInput from './forms/TextareaInput.astro';
     maxlength={60}
     required
   />
-  <Select
+  <Datalist
     name="language"
     label="Kieli"
-    options={[
-      { value: 'plaintext', label: 'Teksti' },
-      { value: 'markdown', label: 'Markdown' },
-      { value: 'html', label: 'HTML' },
-    ]}
+    options={options}
     class="language"
     required
   />

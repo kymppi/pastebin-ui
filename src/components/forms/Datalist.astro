@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Props extends HTMLAttributes<'select'> {
+  label: string;
+  options: { value: string }[];
+  name: string;
+}
+
+const { label, options, name, class: className, ...rest } = Astro.props;
+---
+
+<div class:list={['form-control w-full max-w-xs', className]}>
+  <label class="label">
+    <span class="label-text">{label}</span>
+  </label>
+  <input
+    type="text"
+    list="languages"
+    class="select select-bordered select-secondary"
+    name={name}
+    {...rest}
+  />
+  <datalist id="languages">
+    {options.map((el) => <option value={el.value} />)}
+  </datalist>
+</div>
