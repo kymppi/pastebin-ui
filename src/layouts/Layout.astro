@@ -17,6 +17,10 @@ const { title = 'Liiteroskis - Pastebin.Fi' } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script>
+      import { themeChange } from 'theme-change';
+      themeChange();
+    </script>
   </head>
   <body class="flex flex-col min-h-screen">
     <main class="grid w-full p-10 gap-10 sm:p-20 grow">
@@ -35,10 +39,6 @@ const { title = 'Liiteroskis - Pastebin.Fi' } = Astro.props;
           'data-theme',
           localStorage.getItem('theme')
         );
-    </script>
-    <script>
-      import { themeChange } from 'theme-change';
-      themeChange();
     </script>
   </body>
 </html>
