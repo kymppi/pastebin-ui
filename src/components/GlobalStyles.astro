@@ -3,11 +3,16 @@
     @apply bg-neutral;
   }
   a {
-    --bg-height: 2px;
+    --bg-height: 0.13em;
     background: linear-gradient(0deg, currentColor, currentColor) no-repeat
       right bottom / 0 var(--bg-height, 100%);
     transition: background-size 350ms;
-    padding-bottom: 0.1875em;
+    padding-bottom: calc(var(--bg-height) + 1px);
+  }
+
+  .no-link-underline {
+    background: none;
+    --bg-height: 0;
   }
   a:where(:hover, :focus-visible) {
     background-size: 100% var(--bg-height);
