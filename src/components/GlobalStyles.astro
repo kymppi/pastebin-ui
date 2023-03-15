@@ -7,31 +7,20 @@ import squiggle from '../svg/squiggle.svg';
     @apply bg-neutral;
   }
   a {
-    @apply text-primary;
-    padding-bottom: 0.25em;
-    text-decoration: none;
-    border-bottom: 1px solid currentColor;
+    --bg-height: 2px;
+    background: linear-gradient(0deg, currentColor, currentColor) no-repeat
+      right bottom / 0 var(--bg-height, 100%);
+    transition: background-size 350ms;
+    padding-bottom: 0.1875em;
+  }
+  a:where(:hover, :focus-visible) {
+    background-size: 100% var(--bg-height);
+    background-position-x: left;
   }
 
-  /* "data:image/svg+xml;charset=utf8,%3Csvg id='squiggle-link' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' viewBox='0 0 20 4'%3E%3Cstyle type='text/css'%3E.squiggle{animation:shift .4s linear infinite;}@keyframes shift {from {transform:translateX(0);}to {transform:translateX(-20px);}}%3C/style%3E%3Cpath fill='none' stroke='%238ecae6' stroke-width='2' class='squiggle' d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3'/%3E%3C/svg%3E" */
-  a:hover {
-    background-image: url('/squiggle.svg');
-    background-position: bottom;
-    background-repeat: repeat-x;
-    background-size: 20px 4px;
-    border-bottom: 0;
-    padding-bottom: 0.3em;
+  a {
     text-decoration: none;
-  }
-
-  .secondary-link:hover {
-    color: currentColor;
-    background-image: url('/squiggle-secondary.svg');
-    background-position: bottom;
-    background-repeat: repeat-x;
-    background-size: 20px 4px;
-    border-bottom: 0;
-    padding-bottom: 0.3em;
-    text-decoration: none;
+    color: inherit;
+    line-height: 1;
   }
 </style>
