@@ -1,0 +1,9 @@
+---
+import SearchBar from '../components/SearchBar';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Hae | pastebin.fi">
+  <SearchBar client:only />
+  <iframe data-xstate class="w-full h-96"></iframe>
+</Layout>
