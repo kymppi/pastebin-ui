@@ -73,3 +73,23 @@ export const getPaste = async (
     },
   }));
 };
+
+export const searchPastes = async (
+  query: string
+): Promise<AxiosResponse<Paste[], any>> => {
+  return await apiClient
+    .get<GetPasteResponse[]>(`/pastes/?q=${query}`)
+    .then((res) => ({
+      ...res,
+      data: res.data.map((p) => ({
+        id: p.id,
+        title: p.title,
+        content: p.content,
+        language: p.programmingLanguage,
+        private: p.hidden,
+        date: new Date(p.date),
+        allowedReads: p.allowedReads,
+        meta: p.meta,
+      })),
+    }));
+};
